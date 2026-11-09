@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jhamaica Vargas | Portfolio</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-light: #111827;
+      --card: #1f2937;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --primary: #38bdf8;
+      --accent: #22c55e;
+      --white: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, var(--bg), var(--bg-light));
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .hero {
+      padding: 90px 0 60px;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .eyebrow {
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .highlight {
+      color: var(--primary);
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 28px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #062639;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white);
+    }
+
+    .socials {
+      display: flex;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .profile-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 25px 40px var(--shadow);
+    }
+
+    .profile-img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--primary), #0ea5e9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      color: white;
+      font-weight: 700;
+      border: 6px solid rgba(255,255,255,0.08);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 16px 10px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--white);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    section {
+      padding: 50px 0;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3vw, 2.5rem);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      margin: 0 auto 36px;
+      max-width: 700px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .about-card,
+    .skill-card,
+    .project-card,
+    .contact-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .about-card p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .mini-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      color: var(--text);
+    }
+
+    .mini-list li::before {
+      content: "✓";
+      color: var(--accent);
+      margin-right: 10px;
+      font-weight: 700;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .skill-card h3 {
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
+
+    .skill-card ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-card li {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      color: var(--white);
+      font-size: 0.9rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .project-thumb {
+      height: 180px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(34, 197, 94, 0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .project-card h3 {
+      font-size: 1.3rem;
+    }
+
+    .project-card p {
+      color: var(--muted);
+    }
+
+    .project-links {
+      margin-top: auto;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .project-links a {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-item {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      color: var(--white);
+      font: inherit;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--muted);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 28px 0 40px;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 900px) {
+      .hero-content,
+      .about-grid,
+      .contact-wrap,
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Alex Carter</div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <div>
+          <div class="eyebrow">Web Developer</div>
+          <h1>Hi, I'm <span class="highlight">Alex</span><br />I build digital experiences.</h1>
+          <p class="lead">
+            I design and develop clean, responsive websites and web apps that help brands stand out and users enjoy every interaction.
+          </p>
+          <div class="cta-row">
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-secondary">Hire Me</a>
+          </div>
+          <div class="socials">
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Behance</a>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-img">AC</div>
+          <div class="stats">
+            <div class="stat">
+              <strong>5+</strong>
+              <span>Years</span>
+            </div>
+            <div class="stat">
+              <strong>24</strong>
+              <span>Projects</span>
+            </div>
+            <div class="stat">
+              <strong>12</strong>
+              <span>Clients</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">
+          I enjoy solving design and development problems with a focus on usability, performance, and visual clarity.
+        </p>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <p>
+              I’m a front-end developer and designer passionate about creating modern, user-friendly digital experiences. My work combines clean code, thoughtful UX, and strong visual design.
+            </p>
+            <p>
+              From landing pages to full business websites, I help companies turn ideas into attractive, functional products that people love to use.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <ul class="mini-list">
+              <li>Responsive and accessible web design</li>
+              <li>UI/UX-focused development</li>
+              <li>Fast, scalable front-end solutions</li>
+              <li>Collaboration with teams and clients</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-subtitle">
+          I work with modern tools to create engaging, efficient, and polished digital products.
+        </p>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>Design</h3>
+            <ul>
+              <li>Figma</li>
+              <li>Adobe XD</li>
+              <li>Photoshop</li>
+              <li>Wireframing</li>
+            </ul>
+          </div>
+
+          <div class="skill-card">
+            <h3>Development</h3>
+            <ul>
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+              <li>React</li>
+            </ul>
+          </div>
+
+          <div class="skill-card">
+            <h3>Tools</h3>
+            <ul>
+              <li>Git</li>
+              <li>GitHub</li>
+              <li>VS Code</li>
+              <li>SEO</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">
+          A few examples of the work I’ve done to help brands create better online experiences.
+        </p>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-thumb">Brand</div>
+            <h3>Brand Launch Website</h3>
+            <p>
+              A clean marketing website for a startup, focused on product messaging and conversion.
+            </p>
+            <div class="project-links">
+              <a href="#">Live Demo</a>
+              <a href="#">Code</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-thumb">Shop</div>
+            <h3>E-commerce UI</h3>
+            <p>
+              A modern storefront interface designed to improve product discovery and shopping flow.
+            </p>
+            <div class="project-links">
+              <a href="#">Live Demo</a>
+              <a href="#">Code</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-thumb">App</div>
+            <h3>Dashboard Design</h3>
+            <p>
+              A dashboard concept with a strong focus on analytics, usability, and mobile responsiveness.
+            </p>
+            <div class="project-links">
+              <a href="#">Live Demo</a>
+              <a href="#">Code</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">
+          Let’s work together on your next website, product, or digital brand experience.
+        </p>
+
+        <div class="contact-wrap">
+          <div class="contact-card">
+            <p>
+              I’m available for freelance projects, collaborations, and full-time opportunities.
+            </p>
+            <div class="contact-details">
+              <div class="contact-item">Email: hello@alexcarter.dev</div>
+              <div class="contact-item">Phone: +1 (555) 123-4567</div>
+              <div class="contact-item">Location: New York, USA</div>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <form>
+              <input type="text" placeholder="Your Name" />
+              <input type="email" placeholder="Your Email" />
+              <textarea placeholder="Your Message"></textarea>
+              <a href="#" class="btn btn-primary">Send Message</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Alex Carter. All rights reserved.
+    </div>
+  </footer>
+</body>
+  </html>
